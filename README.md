@@ -7,11 +7,13 @@ Simultaneously, I continued to reinforce and expand my skills in C and shell scr
 * [0x00. AirBnB clone - The console](https://github.com/Aysuarex/AirBnB_clone)
 * [0x01. Python - if/else, loops, functions](./0x01-python-if_else_loops_functions)
 * [0x02. Python - import & modules](./0x02-python-import_modules)
+* [0x03. Python - Data Structures: Lists, Tuples](./0x03-python-data_structures)
+* [0x04. Python - More Data Structures: Set, Dictionary](./0x04-python-more_data_structures)
 
 ## Author:
 * **Abdurrahman Idris** <[AbdurrahmanIdr](https://github.com/AbdurrahmanIdr)>
 
-## Acknowledgements :pray:
+## Acknowledgements :prayers:
 
 All work contained in this project was completed as part of the curriculum for ALX Africa SE. ALX Africa is an online full-stack software engineering program that prepares students for careers in the tech industry using project-based peer learning. For more information, visit [this link](https://www.alxafrica.com//).
 
