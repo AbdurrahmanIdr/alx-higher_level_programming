@@ -1,15 +1,15 @@
 #!/usr/bin/node
+const { argv } = require('process');
 
-let arg = 'X';
-const arrg = process.argv;
-const step = parseInt(arrg[2]);
-if (isNaN(step)) {
+if (isNaN(argv[2])) {
   console.log('Missing size');
 } else {
-  for (let xxx = 1; xxx < step; xxx++) {
-    arg += 'X';
+  const size = parseInt(argv[2]);
+  const charArray = [];
+  for (let i = 0; i < size; i++) {
+    charArray.push('X');
   }
-  for (let start = 0; start < step; start++) {
-    console.log(arg);
+  for (let j = 0; j < size; j++) {
+    console.log(charArray.join(''));
   }
 }
