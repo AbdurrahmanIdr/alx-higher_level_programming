@@ -1,3 +1,2 @@
 #!/usr/bin/node
-
-console.log('primt');
+myVar = 333;
