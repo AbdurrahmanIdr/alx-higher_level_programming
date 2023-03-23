@@ -1,29 +1,21 @@
 #!/usr/bin/python3
+"""Start link class to table in database
 """
-This script prints the first State object
-from the database `hbtn_0e_6_usa`.
-"""
-
-from sys import argv
+import sys
 from model_state import Base, State
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 if __name__ == "__main__":
-    """
-    Access to the database and get a state
-    from the database.
-    """
+    url = 'mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1],
+                                                      sys.argv[2], sys.argv[3])
+    engine = create_engine(url, pool_pre_ping=True)
 
-    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        argv[1], argv[2], argv[3])
-    engine = create_engine(db_uri)
-    Session = sessionmaker(bind=engine)
-
-    session = Session()
-    instance = session.query(State).order_by(State.id).first()
-
-    if instance is None:
-        print('Nothing')
+    connection = engine.connect()
+    Base.metadata.create_all(engine)
+    session = sessionmaker(bind=engine)()
+    results = session.query(State).first()
+    if results:
+        print("1: {}".format(results.name))
     else:
-        print('{0}: {1}'.format(instance.id, instance.name))
+        print("Nothing")
