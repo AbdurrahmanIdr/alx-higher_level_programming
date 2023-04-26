@@ -1,12 +1,13 @@
 #!/usr/bin/node
-// interact with a file
-// print out the text in utf8
-// print error if error
+// script that reads and prints the content of a file
 
-const arg = process.argv;
+const fileName = process.argv[2];
 const fs = require('fs');
-
-fs.readFile(arg[2], 'utf-8', (err, data) => {
-  if (err) throw err;
+// Use fs.readFile() method to read the file
+fs.readFile(fileName, 'utf-8', (err, data) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
   console.log(data);
 });
