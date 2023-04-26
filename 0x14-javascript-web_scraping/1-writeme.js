@@ -1,13 +1,10 @@
 #!/usr/bin/node
-// interact with a file
-// print out the text in utf8
-// print error if error
-
-const arg = process.argv;
+// script that writes a string to a file
+// content of the file must be written in utf-8
 const fs = require('fs');
+const fileName = process.argv[2];
+const content = process.argv[3];
 
-const data1 = arg[3];
-fs.writeFile(arg[2], data1, (err, data) => {
+fs.writeFile(fileName, content, 'utf8', (err) => {
   if (err) throw err;
-  // console.log(data);
 });
