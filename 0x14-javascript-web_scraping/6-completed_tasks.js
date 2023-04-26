@@ -1,28 +1,25 @@
 #!/usr/bin/node
-// count number of completed task
-// code written by me gangan
-
+// script that computes the number of tasks completed by user id
+// Only print users with completed task
 const request = require('request');
+const url = process.argv[2];
+const myDict = {};
 
-request(process.argv[2], function (error, response) {
-  if (error) {
-    console.error(error);
-  }
-  const dict = {};
-  const allbdy = JSON.parse(response.body);
-  for (let i = 0; i < allbdy.length; i++) {
-    if (allbdy[i].userId in dict) {
-      if (allbdy[i].completed === true) {
-        const key = allbdy[i].userId;
-        dict[key] = dict[key] + 1;
-      }
-    } else {
-      const key = allbdy[i].userId;
-      if (allbdy[i].completed === true) {
-        dict[key] = 1;
+request(url, function (err, data, body) {
+  if (err) {
+    console.log(err);
+  } else {
+    const response = JSON.parse(body);
+
+    for (let i = 0; i < response.length; i++) {
+      if (response[i].completed === true) {
+        if (myDict[response[i].userId] === undefined) {
+          myDict[response[i].userId] = 1;
+        } else {
+          myDict[response[i].userId] += 1;
+        }
       }
     }
   }
-  console.log(dict);
-}
-);
+  console.log(myDict);
+});
