@@ -1,22 +1,22 @@
 #!/usr/bin/node
-// gets the list of names in starwars
-
+// script that prints all characters of a Star Wars movie
+// Display one character name by line in the same order
+// and use the Star wars API
 const request = require('request');
-const url = 'http://swapi-api.hbtn.io/api/films/' + process.argv[2];
-request.get(url, function (err, res, body) {
+const endPoint = 'http://swapi-api.hbtn.io/api/films/' + process.argv[2];
+request.get(endPoint, function (err, response, body) {
   if (err) {
-    console.log(err);
-    return;
-  }
-  const characters = JSON.parse(body).characters;
-  for (let i = 0; i < characters.length; i++) {
-    request.get(characters[i], function (err, res, body) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      const name = JSON.parse(body).name;
-      console.log(name);
+    throw err;
+  } else if (response.statusCode === 200) {
+    const characters = JSON.parse(body).characters;
+    characters.forEach(character => {
+      request.get(character, function (err, response, body) {
+        if (err) {
+          throw err;
+        } else if (response.statusCode === 200) {
+          console.log(JSON.parse(body).name);
+        }
+      });
     });
   }
 });
